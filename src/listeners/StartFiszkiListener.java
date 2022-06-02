@@ -42,12 +42,15 @@ public class StartFiszkiListener implements ActionListener
 	{
 		try 
 		{
-			if((getOknoFiszki().getPolski().isSelected() && !getOknoFiszki().getAngielski().isSelected())
-					|| (!getOknoFiszki().getPolski().isSelected() && getOknoFiszki().getAngielski().isSelected()))
+			if(getOknoFiszki().getStart().getText().equals("START"))
 			{
-				dezaktywujPrzyciski();
-				System.out.println("Zgadywanie angielskich s³ów");
-				new FiszkiThread(getOknoFiszki()).start();
+				if((getOknoFiszki().getPolski().isSelected() && !getOknoFiszki().getAngielski().isSelected())
+						|| (!getOknoFiszki().getPolski().isSelected() && getOknoFiszki().getAngielski().isSelected()))
+				{
+					dezaktywujPrzyciski();
+					System.out.println("Zgadywanie angielskich s³ów");
+					new FiszkiThread(getOknoFiszki()).start();
+				}
 			}
 		}
 		catch(Exception ex)
