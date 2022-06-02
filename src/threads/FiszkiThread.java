@@ -1,16 +1,5 @@
 package threads;
 
-<<<<<<< HEAD
-import javax.swing.JButton;
-
-public class FiszkiThread extends Thread
-{
-	private JButton przycisk;
-	
-	public FiszkiThread(JButton przycisk)
-	{
-		this.przycisk = przycisk;
-=======
 import java.awt.Color;
 
 import javax.swing.JTextField;
@@ -38,16 +27,11 @@ public class FiszkiThread extends Thread
 	public FiszkiThread(OknoFiszki oknoFiszki)
 	{
 		this.oknoFiszki = oknoFiszki;
->>>>>>> karol
 	}
 	
 	@Override
 	public void run()
 	{
-<<<<<<< HEAD
-		
-		
-=======
 		JTextField pole1 = new JTextField();
 		JTextField pole2 = new JTextField();
 		
@@ -117,6 +101,5 @@ public class FiszkiThread extends Thread
 		getOknoFiszki().getAngielski().setEnabled(true);
 		getOknoFiszki().getWprowadzanie().setEnabled(true);
 		getOknoFiszki().getStart().setText("START");
->>>>>>> karol
 	}
 }
