@@ -5,7 +5,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import program.OknoFiszki;
+import threads.FiszkiThread;
 
+/**
+ * Listener do przycisku START
+ * Gdy któryœ checkbox jest zaznaczony, po naciœniêciu tego przycisku w³¹czy siê tryb odgadywania fiszek (FiszkiThread)
+ * Ponadto ten przycisk po wciœniêciu zamieni siê w timer odliczaj¹cy czas (ten w¹tek zostaje uruchomiony ju¿ w FiszkiThread)
+ */
 public class StartFiszkiListener implements ActionListener
 {
 	/*
@@ -34,19 +40,27 @@ public class StartFiszkiListener implements ActionListener
 	{
 		try 
 		{
-			if(getOknoFiszki().getPolski().isSelected() && !getOknoFiszki().getAngielski().isSelected())
+			if((getOknoFiszki().getPolski().isSelected() && !getOknoFiszki().getAngielski().isSelected())
+					|| (!getOknoFiszki().getPolski().isSelected() && getOknoFiszki().getAngielski().isSelected()))
 			{
-				getOknoFiszki().getStart().setText("Nastêpny");
-			}
-			else if(!getOknoFiszki().getPolski().isSelected() && getOknoFiszki().getAngielski().isSelected())
-			{
-				getOknoFiszki().getStart().setText("Nastêpny");
+				dezaktywujPrzyciski();
+				System.out.println("Zgadywanie angielskich s³ów");
+				new FiszkiThread(getOknoFiszki()).start();
 			}
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-		}	
+		}
+
 	}
+	
+	private void dezaktywujPrzyciski()
+	{
+		getOknoFiszki().getPolski().setEnabled(false);
+		getOknoFiszki().getAngielski().setEnabled(false);
+		getOknoFiszki().getWprowadzanie().setEnabled(false);
+	}
+
 	
 }
