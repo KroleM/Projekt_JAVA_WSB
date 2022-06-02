@@ -1,5 +1,6 @@
 package threads;
 
+<<<<<<< HEAD
 import javax.swing.JButton;
 
 public class FiszkiThread extends Thread
@@ -9,12 +10,113 @@ public class FiszkiThread extends Thread
 	public FiszkiThread(JButton przycisk)
 	{
 		this.przycisk = przycisk;
+=======
+import java.awt.Color;
+
+import javax.swing.JTextField;
+
+import program.OknoFiszki;
+import program.ParaSlow;
+
+/**
+ * W¹tek zaczyna pokazywaæ s³owa po polsku lub angielsku (w zale¿noœci od wybranego trybu) i nale¿y dopasowaæ do nich t³umaczenie.
+ * U¿ytkownik ma 5 sekund na odpowiedz. Po tym czasie pole tekstowe zostanie zaznaczone na zielono lub czerwono zale¿nie, czy zosta³a udzielona prawid³owa odpowiedz.
+ * Dodatkowo na czas 1 sekundy zostanie pokazana prawid³owa odpowiedz.
+ * Ten w¹tek uruchamia wewn¹trz kolejny w¹tek: odliczanie czasu odpowiedzi (OdliczanieThread)
+ */
+public class FiszkiThread extends Thread
+{
+	private OknoFiszki oknoFiszki;
+	
+	public OknoFiszki getOknoFiszki() {
+		return oknoFiszki;
+	}
+	public void setOknoFiszki(OknoFiszki oknoFiszki) {
+		this.oknoFiszki = oknoFiszki;
+	}
+
+	public FiszkiThread(OknoFiszki oknoFiszki)
+	{
+		this.oknoFiszki = oknoFiszki;
+>>>>>>> karol
 	}
 	
 	@Override
 	public void run()
 	{
+<<<<<<< HEAD
 		
 		
+=======
+		JTextField pole1 = new JTextField();
+		JTextField pole2 = new JTextField();
+		
+		if(getOknoFiszki().getPolski().isSelected())
+		{
+			pole1 = getOknoFiszki().getFiszkaPolska();
+			pole2 = getOknoFiszki().getFiszkaAngielska();
+		}
+		else
+		{
+			pole2 = getOknoFiszki().getFiszkaPolska();
+			pole1 = getOknoFiszki().getFiszkaAngielska();
+		}
+		for(var elem : OknoFiszki.getParaSlow())
+		{
+			try
+			{
+				new OdliczanieThread(getOknoFiszki().getStart()).start();
+				pole1.setText(getOknoFiszki().getPolski().isSelected()? elem.getSlowoPolskie() : elem.getSlowoAngielskie());
+				Thread.sleep(5000);		
+				if(pole2.getText().equals(getOknoFiszki().getPolski().isSelected() ? elem.getSlowoAngielskie() : elem.getSlowoPolskie()))
+				{
+					dobraOdpowiedz(pole2);
+					Thread.sleep(1000);
+					wyzerujPole(pole2);
+				}
+				else
+				{
+					zlaOdpowiedz(pole2, elem);
+					Thread.sleep(1000);
+					wyzerujPole(pole2);
+				}	
+			}
+			catch(InterruptedException e)
+			{
+				System.out.println("W¹tek siê zatrzymuje");
+				break;	//wyskakuje z while
+			}
+			finally
+			{
+				getOknoFiszki().getFiszkaAngielska().setText("");
+				getOknoFiszki().getFiszkaPolska().setText("");
+			}
+		}
+		aktywujPrzyciski();
+	}
+	
+	private void dobraOdpowiedz(JTextField pole)
+	{
+		pole.setEditable(false);
+		pole.setBackground(new Color(50,205,50));
+	}
+	private void zlaOdpowiedz(JTextField pole, ParaSlow para)
+	{
+		pole.setBackground(new Color(255,0,0));
+		pole.setText(para.getSlowoAngielskie());
+	}
+	private void wyzerujPole(JTextField pole)
+	{
+		pole.setBackground(new Color(255,255,255));
+		pole.setText("");
+		pole.setEditable(true);
+	}
+	private void aktywujPrzyciski()
+	{
+		getOknoFiszki().getPolski().setEnabled(true);
+		getOknoFiszki().getAngielski().setEnabled(true);
+		getOknoFiszki().getWprowadzanie().setEnabled(true);
+		getOknoFiszki().getStart().setText("START");
+>>>>>>> karol
 	}
 }
