@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import listeners.FiszkiListener;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -77,7 +79,6 @@ public class OknoGlowne
 	{
 		frame = new JFrame("Aplikacja do nauki angielskiego");
 		panel = new JPanel();
-		panel.setBackground(new Color(235, 246, 255));
 		frame.setSize(500, 300);
 		frame.setContentPane(panel);
 
@@ -91,10 +92,13 @@ public class OknoGlowne
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panel3.setLayout(new GridLayout(1, 2, 20, 20));
 		panel4.setLayout(new FlowLayout(FlowLayout.TRAILING));
-		panel1.setBackground(new Color(235, 246, 255));
-		panel2.setBackground(new Color(235, 246, 255));
-		panel3.setBackground(new Color(235, 246, 255));
-		panel4.setBackground(new Color(235, 246, 255));
+		
+		Color tlo = new Color(235, 246, 255);
+		panel.setBackground(tlo);
+		panel1.setBackground(tlo);
+		panel2.setBackground(tlo);
+		panel3.setBackground(tlo);
+		panel4.setBackground(tlo);
 		
 		przyciskFiszki = new JButton("FISZKI");
 		przyciskFiszki.setFont(new Font("Calibri", Font.BOLD, 18));	
@@ -102,7 +106,7 @@ public class OknoGlowne
 		przyciskQuiz = new JButton("QUIZ");
 		przyciskQuiz.setFont(new Font("Calibri", Font.BOLD, 18));	
 		przyciskStatystyki = new JButton("Statystyki");
-		przyciskStatystyki.setFont(new Font("Calibri", Font.BOLD, 14));	
+		przyciskStatystyki.setFont(new Font("Calibri", Font.BOLD, 14));
 		przyciskPomoc = new JButton("?");
 		przyciskPomoc.setFont(new Font("Calibri", Font.BOLD, 26));	
 		tekst = new JLabel("Æwicz swój angielski!");
@@ -119,9 +123,27 @@ public class OknoGlowne
 		panel.add(panel3);
 		panel.add(panel4);
 		
+		przyciskFiszki.addActionListener(new FiszkiListener(this));
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
+	}
+	
+	public void DezaktywujPrzyciski()
+	{
+		getPrzyciskStatystyki().setEnabled(false);
+		getPrzyciskFiszki().setEnabled(false);
+		getPrzyciskQuiz().setEnabled(false);
+		getPrzyciskPomoc().setEnabled(false);
+	}
+	
+	public void AktywujPrzyciski()
+	{
+		getPrzyciskStatystyki().setEnabled(true);
+		getPrzyciskFiszki().setEnabled(true);
+		getPrzyciskQuiz().setEnabled(true);
+		getPrzyciskPomoc().setEnabled(true);
 	}
 	
 }
