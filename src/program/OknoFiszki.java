@@ -34,7 +34,8 @@ public class OknoFiszki extends JFrame
 	private JCheckBox angielski;
 	private JButton start;
 	private JButton wprowadzanie;
-	private static ArrayList<ParaSlow> paraSlow;
+
+	public static ArrayList<ParaSlow> paraSlow;
 	static {
 		paraSlow = new ArrayList<>(List.of(
 				new ParaSlow("rower", "bicycle"), 

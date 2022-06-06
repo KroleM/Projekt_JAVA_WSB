@@ -13,6 +13,7 @@ import listeners.FiszkiListener;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 /** 
  * Klasa przedstawia pocz¹tkowe okno aplikacji. Zosta³a napisana w Swing.
@@ -27,6 +28,7 @@ public class OknoGlowne
 	private JFrame frame;
 	private JPanel panel;
 	private JButton przyciskFiszki;
+	private JButton przyciskFiszkiNauka;
 	private JButton przyciskQuiz;
 	private JButton przyciskStatystyki;
 	private JButton przyciskPomoc;
@@ -35,6 +37,15 @@ public class OknoGlowne
 	public JFrame getFrame() {
 		return frame;
 	}
+
+	public JButton getPrzyciskFiszkiNauka() {
+		return przyciskFiszkiNauka;
+	}
+
+	public void setPrzyciskFiszkiNauka(JButton przyciskFiszkiNauka) {
+		this.przyciskFiszkiNauka = przyciskFiszkiNauka;
+	}
+
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
@@ -90,7 +101,7 @@ public class OknoGlowne
 		JPanel panel4 = new JPanel();
 		panel1.setLayout(new FlowLayout(FlowLayout.TRAILING));
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER));
-		panel3.setLayout(new GridLayout(1, 2, 20, 20));
+		panel3.setLayout(new GridLayout(2, 2, 20, 20));
 		panel4.setLayout(new FlowLayout(FlowLayout.TRAILING));
 		
 		Color tlo = new Color(235, 246, 255);
@@ -100,7 +111,7 @@ public class OknoGlowne
 		panel3.setBackground(tlo);
 		panel4.setBackground(tlo);
 		
-		przyciskFiszki = new JButton("FISZKI");
+		przyciskFiszki = new JButton("FISZKI - test");
 		przyciskFiszki.setFont(new Font("Calibri", Font.BOLD, 18));	
 		//przyciskFiszki.setBackground(null);
 		przyciskQuiz = new JButton("QUIZ");
@@ -111,11 +122,13 @@ public class OknoGlowne
 		przyciskPomoc.setFont(new Font("Calibri", Font.BOLD, 26));	
 		tekst = new JLabel("Æwicz swój angielski!");
 		tekst.setFont(new Font("Calibri", Font.BOLD, 26));
+		przyciskFiszkiNauka = new JButton("Fiszki - nauka");
 		
 		panel1.add(przyciskStatystyki);
 		panel2.add(tekst);
 		panel3.add(przyciskFiszki);
 		panel3.add(przyciskQuiz);
+		panel3.add(przyciskFiszkiNauka);
 		panel4.add(przyciskPomoc);
 		
 		panel.add(panel1);
@@ -144,6 +157,10 @@ public class OknoGlowne
 		getPrzyciskFiszki().setEnabled(true);
 		getPrzyciskQuiz().setEnabled(true);
 		getPrzyciskPomoc().setEnabled(true);
+	}
+
+	public void addFiszkiNaukaButtonListener(ActionListener al){
+		przyciskFiszkiNauka.addActionListener(al);
 	}
 	
 }
