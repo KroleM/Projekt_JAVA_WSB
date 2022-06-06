@@ -1,5 +1,6 @@
 package program;
 
+import java.io.File;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Start {
@@ -24,6 +25,15 @@ public class Start {
 			on.addSaveButtonListener( u -> {
 				ParaSlow ps = on.aktualnaFiszka();
 				OknoFiszki.paraSlow.add(ps);
+			});
+
+			on.addWczytajFiszkiListener(w -> {
+				File wybranyPlik = ObslugaPlikow.wybierzPlik();
+				ObslugaPlikow.wczytajFiszki(wybranyPlik);
+			});
+
+			on.addZapiszFiszkiListener(s -> {
+				new Thread(ObslugaPlikow::zapiszDoPliku).start();
 			});
 		});
 

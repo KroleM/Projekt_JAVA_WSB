@@ -1,0 +1,5 @@
+rower;bicycle
+siodełko;saddle
+widelec;fork
+opona;tyre
+zapięcie;lock
