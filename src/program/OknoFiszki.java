@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+//import javax.swing.WindowConstants;
 
 import listeners.JezykCheckListener;
 import listeners.StartFiszkiListener;
@@ -42,17 +42,17 @@ public class OknoFiszki extends JFrame
 				new ParaSlow("siode³ko", "saddle"), 
 				new ParaSlow("widelec", "fork"),
 				new ParaSlow("opona", "tyre"),
-				new ParaSlow("zapiêcie", "lock"),
-				new ParaSlow("rama", "frame"),
-				new ParaSlow("piasta", "hub"),
-				new ParaSlow("hamulec", "brake"),
-				new ParaSlow("amortyzator", "shock absorber"),
-				new ParaSlow("kierownica", "handlebar"),
-				new ParaSlow("przerzutka", "gear"),
-				new ParaSlow("³ancuch", "chain"),
-				new ParaSlow("zêbatka", "sprocket"),
-				new ParaSlow("dêtka", "tube"),
-				new ParaSlow("szprycha", "spoke")
+				new ParaSlow("zapiêcie", "lock")
+				//new ParaSlow("rama", "frame"),
+				//new ParaSlow("piasta", "hub"),
+				//new ParaSlow("hamulec", "brake"),
+				//new ParaSlow("amortyzator", "shock absorber"),
+				//new ParaSlow("kierownica", "handlebar"),
+				//new ParaSlow("przerzutka", "gear"),
+				//new ParaSlow("³ancuch", "chain"),
+				//new ParaSlow("zêbatka", "sprocket"),
+				//new ParaSlow("dêtka", "tube"),
+				//new ParaSlow("szprycha", "spoke")
 				));
 	}
 
@@ -156,6 +156,9 @@ public class OknoFiszki extends JFrame
 		start.addActionListener(new StartFiszkiListener(this));
 		
 		//setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		/**
+		 * Ta metoda zamyka okno "Fiszki" i aktywuje z powrotem przyciski w oknie g³ównym
+		 */
 		addWindowListener (new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				dispose();

@@ -1,12 +1,12 @@
 package listeners;
 
+import java.awt.Font;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
-
-import program.OknoFiszki;
 
 /**
  * Akcja wywo³ana CheckBoxami polski/angielski w karcie Fiszki
@@ -61,6 +61,8 @@ public class JezykCheckListener implements ActionListener
 			if(checkbox1.isSelected())
 			{
 				dezaktywacja(pole1, pole2);
+				pole1.setFont(new Font("Calibri", Font.BOLD, 14));
+				pole2.setFont(new Font("Calibri", Font.BOLD, 14));
 				checkbox2.setSelected(false);
 			}
 			else
@@ -76,10 +78,10 @@ public class JezykCheckListener implements ActionListener
 	
 	private void dezaktywacja(JTextField pole1, JTextField pole2)
 	{
-		pole1.setEnabled(false);
-		//pole1.setEditable(false);
-		pole2.setEnabled(true);
-		//pole2.setEditable(true);
+		//pole1.setEnabled(false);
+		pole1.setEditable(false);
+		//pole2.setEnabled(true);
+		pole2.setEditable(true);
 	}
 	private void aktywacja(JTextField pole1, JTextField pole2)
 	{
