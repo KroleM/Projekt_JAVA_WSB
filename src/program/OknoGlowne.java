@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import listeners.FiszkiListener;
+import listeners.QuizListener;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -137,6 +138,7 @@ public class OknoGlowne
 		panel.add(panel4);
 		
 		przyciskFiszki.addActionListener(new FiszkiListener(this));
+		przyciskQuiz.addActionListener(new QuizListener(this));
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);

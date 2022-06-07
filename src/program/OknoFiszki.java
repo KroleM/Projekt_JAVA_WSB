@@ -6,12 +6,14 @@ import java.awt.GridLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 //import javax.swing.WindowConstants;
@@ -34,6 +36,7 @@ public class OknoFiszki extends JFrame
 	private JCheckBox angielski;
 	private JButton start;
 	private JButton wprowadzanie;
+	private boolean czyStart;
 
 	public static ArrayList<ParaSlow> paraSlow;
 	static {
@@ -42,17 +45,17 @@ public class OknoFiszki extends JFrame
 				new ParaSlow("siode³ko", "saddle"), 
 				new ParaSlow("widelec", "fork"),
 				new ParaSlow("opona", "tyre"),
-				new ParaSlow("zapiêcie", "lock")
-				//new ParaSlow("rama", "frame"),
-				//new ParaSlow("piasta", "hub"),
-				//new ParaSlow("hamulec", "brake"),
-				//new ParaSlow("amortyzator", "shock absorber"),
-				//new ParaSlow("kierownica", "handlebar"),
-				//new ParaSlow("przerzutka", "gear"),
-				//new ParaSlow("³ancuch", "chain"),
-				//new ParaSlow("zêbatka", "sprocket"),
-				//new ParaSlow("dêtka", "tube"),
-				//new ParaSlow("szprycha", "spoke")
+				new ParaSlow("zapiêcie", "lock"),
+				new ParaSlow("rama", "frame"),
+				new ParaSlow("piasta", "hub"),
+				new ParaSlow("hamulec", "brake"),
+				new ParaSlow("amortyzator", "shock absorber"),
+				new ParaSlow("kierownica", "handlebar"),
+				new ParaSlow("przerzutka", "gear"),
+				new ParaSlow("³ancuch", "chain"),
+				new ParaSlow("zêbatka", "sprocket"),
+				new ParaSlow("dêtka", "tube"),
+				new ParaSlow("szprycha", "spoke")
 				));
 	}
 
@@ -104,6 +107,12 @@ public class OknoFiszki extends JFrame
 	public static void setParaSlow(ArrayList<ParaSlow> paraSlow) {
 		OknoFiszki.paraSlow = paraSlow;
 	}
+	public boolean isCzyStart() {
+		return czyStart;
+	}
+	public void setCzyStart(boolean czyStart) {
+		this.czyStart = czyStart;
+	}
 	
 	public OknoFiszki(OknoGlowne okno)
 	{
@@ -151,23 +160,42 @@ public class OknoFiszki extends JFrame
 		panelGlowny.add(panel4);
 		panelGlowny.add(panel5);
 		
+		JOptionPane.showMessageDialog(null, "Wybierz jêzyk, w którym chcesz rozwi¹zywaæ fiszki. Nastêpnie naciœnij <Start> i odgadnij 5 s³ów!");
+		
 		polski.addActionListener(new JezykCheckListener(polski, angielski, fiszkaPolska, fiszkaAngielska));
 		angielski.addActionListener(new JezykCheckListener(angielski, polski, fiszkaAngielska, fiszkaPolska));
 		start.addActionListener(new StartFiszkiListener(this));
 		
 		//setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		/**
-		 * Ta metoda zamyka okno "Fiszki" i aktywuje z powrotem przyciski w oknie g³ównym
+		 * Ta metoda zamyka okno "Fiszki" i aktywuje z powrotem okno g³ówne
 		 */
 		addWindowListener (new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
+				setCzyStart(false);
 				dispose();
 			}
 			public void windowClosed(WindowEvent e) {
-				getOkno().AktywujPrzyciski();
+				//getOkno().AktywujPrzyciski();
+				getOkno().getFrame().setVisible(true);
 			}
 		});
 		setVisible(true);
+	}
+	
+	public ArrayList<ParaSlow> LosujFiszki()
+	{
+		ArrayList<ParaSlow> WylosowaneFiszki = new ArrayList<>();
+		Random rand = new Random();
+		//int tab[] = new int[5];	//sprawdzanie, czy liczba siê nie powtarza
+
+		for(int i=0; i<5; i++)
+		{
+			int losowaLiczba = rand.nextInt(getParaSlow().size());
+			WylosowaneFiszki.add(getParaSlow().get(losowaLiczba));
+		}
+			
+		return WylosowaneFiszki;
 	}
 		
 }

@@ -2,6 +2,7 @@ package threads;
 
 import java.awt.Color;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import program.OknoFiszki;
@@ -45,7 +46,8 @@ public class FiszkiThread extends Thread
 			pole2 = getOknoFiszki().getFiszkaPolska();
 			pole1 = getOknoFiszki().getFiszkaAngielska();
 		}
-		for(var elem : OknoFiszki.getParaSlow())
+		
+		for(var elem : getOknoFiszki().LosujFiszki())	
 		{
 			try
 			{
@@ -68,14 +70,16 @@ public class FiszkiThread extends Thread
 			catch(InterruptedException e)
 			{
 				System.out.println("W¹tek siê zatrzymuje");
-				break;	//wyskakuje z while
+				break;	//wyskakuje z for
 			}
 			finally
 			{
 				getOknoFiszki().getFiszkaAngielska().setText("");
 				getOknoFiszki().getFiszkaPolska().setText("");
+				if(getOknoFiszki().isCzyStart() == false) break;
 			}
 		}
+		if(getOknoFiszki().isCzyStart() == true) JOptionPane.showMessageDialog(null, "Cykl fiszek zakoñczony!");
 		aktywujPrzyciski();
 	}
 	
