@@ -58,18 +58,10 @@ public class QuizThread extends Thread
 				poleD.setText(elem.getOdp4().getTekstOdp());	
 				JTextField prawidlowaOdp = new JTextField();
 				
-				prawidlowaOdp = switch(poprawnaOdpowiedz(elem)) {
-					case 1:
-						yield poleA;
-					case 2:
-						yield poleB;
-					case 3:
-						yield poleC;
-					case 4:
-						yield poleD;
-					default:
-						yield null;
-				};
+                if(poprawnaOdpowiedz(elem) == 1) prawidlowaOdp = poleA;
+                if(poprawnaOdpowiedz(elem) == 2) prawidlowaOdp = poleB;
+                if(poprawnaOdpowiedz(elem) == 3) prawidlowaOdp = poleC;
+                if(poprawnaOdpowiedz(elem) == 4) prawidlowaOdp = poleD;
 								
 				Thread.sleep(10000);	
 				
@@ -129,9 +121,10 @@ public class QuizThread extends Thread
 	}
 	private void zlaOdpowiedz(JTextField prawidlowaOdp)
 	{
-		getOknoQuiz().getTekstPytania().setBackground(new Color(255,0,0));
-		prawidlowaOdp.setBackground(new Color(50,205,50));
-		getOknoQuiz().getWybranaOdp().setBackground(new Color(255,0,0));
+        getOknoQuiz().getTekstPytania().setBackground(new Color(255,0,0));
+        prawidlowaOdp.setBackground(new Color(50,205,50));
+        if(getOknoQuiz().getWybranaOdp() != null)
+            getOknoQuiz().getWybranaOdp().setBackground(new Color(255,0,0));
 	}
 
 }

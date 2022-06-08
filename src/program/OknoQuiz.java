@@ -5,19 +5,18 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
+import listeners.ButtonAction;
 import listeners.QuizOdpowiedzListener;
 import listeners.StartQuizListener;
 
@@ -36,6 +35,11 @@ public class OknoQuiz
     private final JButton buttonD;
     private final JButton startQuiz;
     private final JPanel panel;
+    private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
+    private static final String odpA = "odpA";
+    private static final String odpB = "odpB";
+    private static final String odpC = "odpC";
+    private static final String odpD = "odpD";
     private OknoGlowne okno;
     private boolean czyStart;
 
@@ -85,7 +89,6 @@ public class OknoQuiz
 		frame.setContentPane(panel);
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panel.setLayout(new GridLayout(4, 1, 10, 10));
-        //tekstPolecenia = new JTextArea("Po naciœniêciu przycisku <Start> zobaczysz 5 pytañ. Wybierz jedn¹ z odpowiedzi: A, B, C, D. Na odpowiedz na 10 sekund.");
         JOptionPane.showMessageDialog(null, "Po naciœniêciu przycisku <Start> zobaczysz 5 pytañ. Wybierz jedn¹ z odpowiedzi: A, B, C, D (mo¿esz u¿yæ klawiatury!). Na odpowiedz masz 10 sekund. Powodzenia :)");
         tekstPytania = new JTextArea("Tutaj pojawi siê treœæ pytania.");
         tekstPytania.setEditable(false);
@@ -109,7 +112,6 @@ public class OknoQuiz
 		panelOdpowiedzi1.setLayout(new FlowLayout());
 		panelOdpowiedzi2.setLayout(new FlowLayout());
 		panelStart.setLayout(new FlowLayout(FlowLayout.CENTER));
-		//panel.add(pole1);
 		panel.add(tekstPytania);
 		panel.add(panelOdpowiedzi1);
 		panel.add(panelOdpowiedzi2);
@@ -133,6 +135,20 @@ public class OknoQuiz
 		buttonD.addActionListener(buttonListener);
 		
 		/**
+		 * Key Binding dla klawiszy klawiatury a, b, c, d;
+		 * Przyciœniêcie klawisza wywo³uje akcjê ButtonAction(JButton)
+		 */
+		tekstPytania.getInputMap(IFW).put(KeyStroke.getKeyStroke("A"), odpA);
+		tekstPytania.getInputMap(IFW).put(KeyStroke.getKeyStroke("B"), odpB);
+		tekstPytania.getInputMap(IFW).put(KeyStroke.getKeyStroke("C"), odpC);
+		tekstPytania.getInputMap(IFW).put(KeyStroke.getKeyStroke("D"), odpD);
+
+		tekstPytania.getActionMap().put(odpA, new ButtonAction(buttonA));
+		tekstPytania.getActionMap().put(odpB, new ButtonAction(buttonB));
+		tekstPytania.getActionMap().put(odpC, new ButtonAction(buttonC));
+		tekstPytania.getActionMap().put(odpD, new ButtonAction(buttonD));
+		
+		/**
 		 * Zamykanie okna "QUIZ"
 		 *  Ta metoda zamyka okno Quiz, wysy³a sygna³ do w¹tku o zakoñczeniu i aktywuje z powrotem okno g³ówne
 		 */
@@ -146,13 +162,6 @@ public class OknoQuiz
 			}
 		});
 		frame.setVisible(true);
-    }
-	
-    public void addOdpButtonListener(ActionListener al) {
-    	buttonA.addActionListener(al);
-    	buttonB.addActionListener(al);
-    	buttonC.addActionListener(al);
-    	buttonD.addActionListener(al);
     }
 
 }
