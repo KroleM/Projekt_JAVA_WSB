@@ -35,23 +35,26 @@ public class FiszkiThread extends Thread
 	{
 		JTextField pole1 = new JTextField();
 		JTextField pole2 = new JTextField();
+		boolean jezyk;
 		
 		if(getOknoFiszki().getPolski().isSelected())
 		{
 			pole1 = getOknoFiszki().getFiszkaPolska();
 			pole2 = getOknoFiszki().getFiszkaAngielska();
+			jezyk = true;
 		}
 		else
 		{
 			pole2 = getOknoFiszki().getFiszkaPolska();
 			pole1 = getOknoFiszki().getFiszkaAngielska();
+			jezyk = false;
 		}
 		
 		for(var elem : getOknoFiszki().LosujFiszki())	
 		{
 			try
 			{
-				new OdliczanieThread(getOknoFiszki().getStart()).start();
+				new OdliczanieThread(getOknoFiszki().getStart(), 5).start();
 				pole1.setText(getOknoFiszki().getPolski().isSelected()? elem.getSlowoPolskie() : elem.getSlowoAngielskie());
 				Thread.sleep(5000);		
 				if(pole2.getText().equals(getOknoFiszki().getPolski().isSelected() ? elem.getSlowoAngielskie() : elem.getSlowoPolskie()))
@@ -62,7 +65,7 @@ public class FiszkiThread extends Thread
 				}
 				else
 				{
-					zlaOdpowiedz(pole2, elem);
+					zlaOdpowiedz(pole2, elem, jezyk);
 					Thread.sleep(1000);
 					wyzerujPole(pole2);
 				}	
@@ -88,10 +91,10 @@ public class FiszkiThread extends Thread
 		pole.setEditable(false);
 		pole.setBackground(new Color(50,205,50));
 	}
-	private void zlaOdpowiedz(JTextField pole, ParaSlow para)
+	private void zlaOdpowiedz(JTextField pole, ParaSlow para, boolean jezyk)
 	{
 		pole.setBackground(new Color(255,0,0));
-		pole.setText(para.getSlowoAngielskie());
+		pole.setText(jezyk == true ? para.getSlowoAngielskie() : para.getSlowoPolskie());
 	}
 	private void wyzerujPole(JTextField pole)
 	{
@@ -103,7 +106,6 @@ public class FiszkiThread extends Thread
 	{
 		getOknoFiszki().getPolski().setEnabled(true);
 		getOknoFiszki().getAngielski().setEnabled(true);
-		getOknoFiszki().getWprowadzanie().setEnabled(true);
 		getOknoFiszki().getStart().setText("START");
 	}
 }

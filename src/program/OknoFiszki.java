@@ -35,7 +35,7 @@ public class OknoFiszki extends JFrame
 	private JCheckBox polski;
 	private JCheckBox angielski;
 	private JButton start;
-	private JButton wprowadzanie;
+	private JButton zakoncz;
 	private boolean czyStart;
 
 	public static ArrayList<ParaSlow> paraSlow;
@@ -95,11 +95,11 @@ public class OknoFiszki extends JFrame
 	public void setStart(JButton start) {
 		this.start = start;
 	}
-	public JButton getWprowadzanie() {
-		return wprowadzanie;
+	public JButton getZakoncz() {
+		return zakoncz;
 	}
-	public void setWprowadzanie(JButton wprowadzanie) {
-		this.wprowadzanie = wprowadzanie;
+	public void setZakoncz(JButton zakoncz) {
+		this.zakoncz = zakoncz;
 	}
 	public static ArrayList<ParaSlow> getParaSlow() {
 		return paraSlow;
@@ -139,7 +139,7 @@ public class OknoFiszki extends JFrame
 		polski = new JCheckBox("polski");
 		angielski = new JCheckBox("angielski");
 		start = new JButton("START");
-		wprowadzanie = new JButton("Wprowadzanie");
+		zakoncz = new JButton("Zakoñcz");
 		
 		JLabel fiszki = new JLabel("FISZKI");
 		fiszki.setFont(new Font("Calibri", Font.BOLD, 26));
@@ -152,7 +152,7 @@ public class OknoFiszki extends JFrame
 		panel4.add(fiszkaPolska);
 		panel4.add(new JLabel("ANGIELSKI"));
 		panel4.add(fiszkaAngielska);
-		panel5.add(wprowadzanie);
+		panel5.add(zakoncz);
 		
 		panelGlowny.add(panel1);
 		panelGlowny.add(panel2);
@@ -162,9 +162,11 @@ public class OknoFiszki extends JFrame
 		
 		JOptionPane.showMessageDialog(null, "Wybierz jêzyk, w którym chcesz rozwi¹zywaæ fiszki. Nastêpnie naciœnij <Start> i odgadnij 5 s³ów!");
 		
+		StartFiszkiListener startListener = new StartFiszkiListener(this);
 		polski.addActionListener(new JezykCheckListener(polski, angielski, fiszkaPolska, fiszkaAngielska));
 		angielski.addActionListener(new JezykCheckListener(angielski, polski, fiszkaAngielska, fiszkaPolska));
-		start.addActionListener(new StartFiszkiListener(this));
+		start.addActionListener(startListener);
+		zakoncz.addActionListener(startListener);
 		
 		//setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		/**

@@ -2,6 +2,7 @@ package program;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import listeners.QuizOdpowiedzListener;
+import listeners.StartQuizListener;
+
 public class OknoQuiz 
 {
     private final JFrame frame;
@@ -25,6 +29,7 @@ public class OknoQuiz
     private final JTextField tekstOdpB;
     private final JTextField tekstOdpC;
     private final JTextField tekstOdpD;
+    private JTextField wybranaOdp;
     private final JButton buttonA;
     private final JButton buttonB;
     private final JButton buttonC;
@@ -33,7 +38,6 @@ public class OknoQuiz
     private final JPanel panel;
     private OknoGlowne okno;
     private boolean czyStart;
-
 
     public OknoGlowne getOkno() {
 		return okno;
@@ -50,6 +54,27 @@ public class OknoQuiz
 	public void setCzyStart(boolean czyStart) {
 		this.czyStart = czyStart;
 	}
+	public JTextArea getTekstPytania() {
+		return tekstPytania;
+	}
+	public JTextField getTekstOdpA() {
+		return tekstOdpA;
+	}
+	public JTextField getTekstOdpB() {
+		return tekstOdpB;
+	}
+	public JTextField getTekstOdpC() {
+		return tekstOdpC;
+	}
+	public JTextField getTekstOdpD() {
+		return tekstOdpD;
+	}	
+	public JTextField getWybranaOdp() {
+		return wybranaOdp;
+	}	
+	public void setWybranaOdp(JTextField wybranaOdp) {
+		this.wybranaOdp = wybranaOdp;
+	}
 	
 	public OknoQuiz(OknoGlowne okno)
     {
@@ -65,9 +90,13 @@ public class OknoQuiz
         tekstPytania = new JTextArea("Tutaj pojawi siê treœæ pytania.");
         tekstPytania.setEditable(false);
         tekstOdpA = new JTextField(20);
+        tekstOdpA.setEditable(false);
         tekstOdpB = new JTextField(20);
+        tekstOdpB.setEditable(false);
         tekstOdpC = new JTextField(20);
+        tekstOdpC.setEditable(false);
         tekstOdpD = new JTextField(20);
+        tekstOdpD.setEditable(false);
         buttonA = new JButton(" A ");
         buttonB = new JButton(" B ");
         buttonC = new JButton(" C ");
@@ -96,11 +125,20 @@ public class OknoQuiz
 		panelOdpowiedzi2.add(tekstOdpD);
 		panelStart.add(startQuiz);
 		
+		startQuiz.addActionListener(new StartQuizListener(this));
+		QuizOdpowiedzListener buttonListener = new QuizOdpowiedzListener(this);
+		buttonA.addActionListener(buttonListener);
+		buttonB.addActionListener(buttonListener);
+		buttonC.addActionListener(buttonListener);
+		buttonD.addActionListener(buttonListener);
+		
 		/**
-		 * Ta metoda zamyka okno "QUIZ" i aktywuje z powrotem okno g³ówne
+		 * Zamykanie okna "QUIZ"
+		 *  Ta metoda zamyka okno Quiz, wysy³a sygna³ do w¹tku o zakoñczeniu i aktywuje z powrotem okno g³ówne
 		 */
 		frame.addWindowListener (new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
+				setCzyStart(false);
 				frame.dispose();
 			}
 			public void windowClosed(WindowEvent e) {
@@ -108,6 +146,13 @@ public class OknoQuiz
 			}
 		});
 		frame.setVisible(true);
+    }
+	
+    public void addOdpButtonListener(ActionListener al) {
+    	buttonA.addActionListener(al);
+    	buttonB.addActionListener(al);
+    	buttonC.addActionListener(al);
+    	buttonD.addActionListener(al);
     }
 
 }

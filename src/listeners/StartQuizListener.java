@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import program.OknoQuiz;
+import threads.QuizThread;
 
 public class StartQuizListener implements ActionListener
 {
@@ -15,7 +16,7 @@ public class StartQuizListener implements ActionListener
 	public void setOknoQuiz(OknoQuiz oknoQuiz) {
 		this.oknoQuiz = oknoQuiz;
 	}
-
+	
 	public StartQuizListener(OknoQuiz oknoQuiz)
 	{
 		this.oknoQuiz = oknoQuiz;
@@ -29,7 +30,7 @@ public class StartQuizListener implements ActionListener
 			if(getOknoQuiz().getStartQuiz().getText().equals("START"))
 			{
 				getOknoQuiz().setCzyStart(true);
-				//new FiszkiThread(getOknoFiszki()).start();
+				new QuizThread(getOknoQuiz()).start();
 			}
 		}
 		catch(Exception ex)

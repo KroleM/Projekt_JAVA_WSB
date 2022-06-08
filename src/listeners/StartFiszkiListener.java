@@ -14,13 +14,6 @@ import threads.FiszkiThread;
  */
 public class StartFiszkiListener implements ActionListener
 {
-	/*
-	private JButton przycisk;
-	private JCheckBox checkBoxPolski;
-	private JCheckBox checkBoxAngielski;
-	private JButton wprowadzanie;
-	private ArrayList<ParaSlow> paraSlow;
-	*/
 	private OknoFiszki oknoFiszki;
 	
 	public OknoFiszki getOknoFiszki() {
@@ -40,7 +33,7 @@ public class StartFiszkiListener implements ActionListener
 	{
 		try 
 		{
-			if(getOknoFiszki().getStart().getText().equals("START"))
+			if(e.getActionCommand().equals("START") && getOknoFiszki().getStart().getText().equals("START"))
 			{
 				if((getOknoFiszki().getPolski().isSelected() && !getOknoFiszki().getAngielski().isSelected())
 						|| (!getOknoFiszki().getPolski().isSelected() && getOknoFiszki().getAngielski().isSelected()))
@@ -51,6 +44,8 @@ public class StartFiszkiListener implements ActionListener
 					new FiszkiThread(getOknoFiszki()).start();
 				}
 			}
+			if(e.getActionCommand().equals("Zakoñcz"))
+				getOknoFiszki().setCzyStart(false);
 		}
 		catch(Exception ex)
 		{
@@ -63,7 +58,6 @@ public class StartFiszkiListener implements ActionListener
 	{
 		getOknoFiszki().getPolski().setEnabled(false);
 		getOknoFiszki().getAngielski().setEnabled(false);
-		getOknoFiszki().getWprowadzanie().setEnabled(false);
 	}
 
 }

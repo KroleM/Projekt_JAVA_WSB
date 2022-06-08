@@ -24,10 +24,10 @@ public class OdliczanieThread extends Thread
 		this.czas = czas;
 	}
 	
-	public OdliczanieThread(JButton przycisk)
+	public OdliczanieThread(JButton przycisk, int czas)
 	{
 		this.przycisk = przycisk;
-		this.czas = 5000;
+		this.czas = czas * 1000;
 		
 	}
 	
