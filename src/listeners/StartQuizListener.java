@@ -38,5 +38,5 @@ public class StartQuizListener implements ActionListener
 			ex.printStackTrace();
 		}
 	}
-	
+
 }

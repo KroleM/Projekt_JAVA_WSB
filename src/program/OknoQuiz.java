@@ -1,6 +1,7 @@
 package program;
 
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -84,13 +85,16 @@ public class OknoQuiz
     	frame = new JFrame("QUIZ");
     	this.okno = okno;
 		frame.setSize(600, 300);
+		frame.setLocationRelativeTo(null);
 		panel = new JPanel();
 		frame.setContentPane(panel);
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panel.setLayout(new GridLayout(4, 1, 10, 10));
+        panel.setBackground(Kolory.Tlo);
         JOptionPane.showMessageDialog(null, "Po naciœniêciu przycisku <Start> zobaczysz 5 pytañ. Wybierz jedn¹ z odpowiedzi: A, B, C, D (mo¿esz u¿yæ klawiatury!). Na odpowiedz masz 10 sekund. Powodzenia :)");
         tekstPytania = new JTextArea("Tutaj pojawi siê treœæ pytania.");
         tekstPytania.setEditable(false);
+        tekstPytania.setFont(new Font("Calibri", Font.PLAIN, 18));
         tekstOdpA = new JTextField(20);
         tekstOdpA.setEditable(false);
         tekstOdpB = new JTextField(20);
@@ -104,6 +108,7 @@ public class OknoQuiz
         buttonC = new JButton(" C ");
         buttonD = new JButton(" D ");
         startQuiz = new JButton("START");
+        startQuiz.setFont(new Font("Calibri", Font.BOLD, 18));
     	
         JPanel panelOdpowiedzi1 = new JPanel();
         JPanel panelOdpowiedzi2 = new JPanel();
@@ -115,6 +120,11 @@ public class OknoQuiz
 		panel.add(panelOdpowiedzi1);
 		panel.add(panelOdpowiedzi2);
 		panel.add(panelStart);
+		
+		panel.setBackground(Kolory.Tlo);
+		panelOdpowiedzi1.setBackground(Kolory.Tlo);
+		panelOdpowiedzi2.setBackground(Kolory.Tlo);
+		panelStart.setBackground(Kolory.Tlo);
 		
 		panelOdpowiedzi1.add(buttonA);
 		panelOdpowiedzi1.add(tekstOdpA);

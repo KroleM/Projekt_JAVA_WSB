@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+import program.Kolory;
 import program.OknoQuiz;
 
 public class QuizOdpowiedzListener implements ActionListener
@@ -38,15 +39,15 @@ public class QuizOdpowiedzListener implements ActionListener
 					break;
 				case " B ":
 					getOknoQuiz().setWybranaOdp(getOknoQuiz().getTekstOdpB());
-					getOknoQuiz().getTekstOdpB().setBackground(new Color(0,180,255));
+					wybierzPole(getOknoQuiz().getTekstOdpB());
 					break;
 				case " C ":
 					getOknoQuiz().setWybranaOdp(getOknoQuiz().getTekstOdpC());
-					getOknoQuiz().getTekstOdpC().setBackground(new Color(0,180,255));
+					wybierzPole(getOknoQuiz().getTekstOdpC());
 					break;
 				case " D ":
 					getOknoQuiz().setWybranaOdp(getOknoQuiz().getTekstOdpD());
-					getOknoQuiz().getTekstOdpD().setBackground(new Color(0,180,255));
+					wybierzPole(getOknoQuiz().getTekstOdpD());
 					break;
 			}
 		}
@@ -65,7 +66,7 @@ public class QuizOdpowiedzListener implements ActionListener
 	}
 	private void wybierzPole(JTextField wybranePole)
 	{
-		wybranePole.setBackground(new Color(0,180,255));
+		wybranePole.setBackground(Kolory.Niebieski);
 	}
 
 }

@@ -121,7 +121,9 @@ public class OknoFiszki extends JFrame
 		setSize(500, 300);
 		JPanel panelGlowny = new JPanel(new GridLayout(5, 1, 10, 10));
 		panelGlowny.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		panelGlowny.setBackground(Kolory.Tlo);
 		setContentPane(panelGlowny);
+		setLocationRelativeTo(null);
 		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
@@ -133,6 +135,11 @@ public class OknoFiszki extends JFrame
 		panel3.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panel4.setLayout(new FlowLayout());
 		panel5.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panel1.setBackground(Kolory.Tlo);
+		panel2.setBackground(Kolory.Tlo);
+		panel3.setBackground(Kolory.Tlo);
+		panel4.setBackground(Kolory.Tlo);
+		panel5.setBackground(Kolory.Tlo);
 		
 		fiszkaPolska = new JTextField(15);
 		fiszkaAngielska = new JTextField(15);
@@ -141,6 +148,8 @@ public class OknoFiszki extends JFrame
 		start = new JButton("START");
 		zakoncz = new JButton("Zakoñcz");
 		
+		polski.setBackground(Kolory.Tlo);
+		angielski.setBackground(Kolory.Tlo);
 		JLabel fiszki = new JLabel("FISZKI");
 		fiszki.setFont(new Font("Calibri", Font.BOLD, 26));
 		

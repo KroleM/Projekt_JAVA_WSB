@@ -21,31 +21,57 @@ public class OknoNauka {
 
     public OknoNauka() {
         frame = new JFrame("Nauka");
-        frame.setSize(500, 400);
+        frame.setSize(500, 300);
+        frame.setLocationRelativeTo(null);
         panel = new JPanel();
         frame.setContentPane(panel);
-        panel.setLayout(new GridLayout(5, 2, 10, 10));
-        labelWordPl = new JLabel("SÅ‚owo pl");
-        labelWordEn = new JLabel("SÅ‚owo ang");
+        panel.setLayout(new GridLayout(4, 1, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        labelWordPl = new JLabel("S³owo polskie (PL)");
+        labelWordPl.setHorizontalAlignment(SwingConstants.CENTER);
+        labelWordEn = new JLabel("S³owo angielskie (EN)");
+        labelWordEn.setHorizontalAlignment(SwingConstants.CENTER);
         textFieldWordPl = new JTextField();
+        textFieldWordPl.setFont(new Font("Calibri", Font.BOLD, 18));
+        textFieldWordPl.setHorizontalAlignment(JTextField.CENTER);
+        textFieldWordPl.setDisabledTextColor(Color.BLACK);
         textFieldWordEn = new JTextField();
-        buttonNext = new JButton("Next");
-        buttonAdd = new JButton("Add");
-        buttonSave = new JButton("Save");
-        wczytajFiszki = new JButton("Wczytaj fiszki");
-        zapiszFiszki = new JButton("Zapisz fiszki");
-        panel.add(labelWordPl);
-        panel.add(labelWordEn);
-        panel.add(textFieldWordPl);
-        panel.add(textFieldWordEn);
-        panel.add(buttonNext);
-        panel.add(buttonAdd);
-        panel.add(buttonSave);
-        panel.add(wczytajFiszki);
-        panel.add(zapiszFiszki);
+        textFieldWordEn.setHorizontalAlignment(JTextField.CENTER);
+        textFieldWordEn.setFont(new Font("Calibri", Font.BOLD, 18));
+        textFieldWordEn.setDisabledTextColor(Color.BLACK);
+        buttonNext = new JButton("Nastêpna fiszka");
+        buttonAdd = new JButton("Tryb dodawania");
+        buttonSave = new JButton("Zapisz");
+        wczytajFiszki = new JButton("Wczytaj z pliku");
+        zapiszFiszki = new JButton("Zapisz do pliku");
+        
+        JPanel panel1 = new JPanel(new GridLayout(1, 2, 10, 10));
+        JPanel panel2 = new JPanel(new GridLayout(1, 2, 10, 10));
+        JPanel panel3 = new JPanel(new GridLayout(1, 3, 10, 10));
+        JPanel panel4 = new JPanel(new GridLayout(1, 2, 10, 10));
+        
+        panel.setBackground(Kolory.Tlo);
+        panel1.setBackground(Kolory.Tlo);
+        panel2.setBackground(Kolory.Tlo);
+        panel3.setBackground(Kolory.Tlo);
+        panel4.setBackground(Kolory.Tlo);
+        
+        panel.add(panel1);
+        panel.add(panel2);
+        panel.add(panel3);
+        panel.add(panel4);
+        
+        panel1.add(labelWordPl);
+        panel1.add(labelWordEn);
+        panel2.add(textFieldWordPl);
+        panel2.add(textFieldWordEn);
+        panel3.add(buttonNext);
+        panel3.add(buttonAdd);
+        panel3.add(buttonSave);
+        panel4.add(wczytajFiszki);
+        panel4.add(zapiszFiszki);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
         frame.setVisible(true);
 

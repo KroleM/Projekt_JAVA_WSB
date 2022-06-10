@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import program.Kolory;
 import program.OknoQuiz;
 import program.PytaniaQuiz;
 import program.PytanieQuiz;
@@ -124,15 +125,15 @@ public class QuizThread extends Thread
 	}
 	private void dobraOdpowiedz(JTextField prawidlowaOdp)
 	{
-		getOknoQuiz().getTekstPytania().setBackground(new Color(50,205,50));
-		prawidlowaOdp.setBackground(new Color(50,205,50));
+		getOknoQuiz().getTekstPytania().setBackground(Kolory.Zielony);
+		prawidlowaOdp.setBackground(Kolory.Zielony);
 	}
 	private void zlaOdpowiedz(JTextField prawidlowaOdp)
 	{
-        getOknoQuiz().getTekstPytania().setBackground(new Color(255,0,0));
-        prawidlowaOdp.setBackground(new Color(50,205,50));
+        getOknoQuiz().getTekstPytania().setBackground(Kolory.Czerwony);
+        prawidlowaOdp.setBackground(Kolory.Zielony);
         if(getOknoQuiz().getWybranaOdp() != null)
-            getOknoQuiz().getWybranaOdp().setBackground(new Color(255,0,0));
+            getOknoQuiz().getWybranaOdp().setBackground(Kolory.Czerwony);
 	}
 
 }

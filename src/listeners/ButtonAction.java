@@ -6,9 +6,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 
 /**
- * 
- * @author marci
- *
+ * Klasa, która obs³uguje przyciski klawiatury w Quizie 
+ * Przyciœniêcie na klawiaturze a, b, c, lub d powoduje wciœniêcie przycisku w oknie.
  */
 public class ButtonAction extends AbstractAction
 {

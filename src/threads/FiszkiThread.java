@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import program.Kolory;
 import program.OknoFiszki;
 import program.ParaSlow;
 import program.Statystyki;
@@ -97,11 +98,11 @@ public class FiszkiThread extends Thread
 	private void dobraOdpowiedz(JTextField pole)
 	{
 		pole.setEditable(false);
-		pole.setBackground(new Color(50,205,50));
+		pole.setBackground(Kolory.Zielony);
 	}
 	private void zlaOdpowiedz(JTextField pole, ParaSlow para, boolean jezyk)
 	{
-		pole.setBackground(new Color(255,0,0));
+		pole.setBackground(Kolory.Czerwony);
 		pole.setText(jezyk == true ? para.getSlowoAngielskie() : para.getSlowoPolskie());
 	}
 	private void wyzerujPole(JTextField pole)

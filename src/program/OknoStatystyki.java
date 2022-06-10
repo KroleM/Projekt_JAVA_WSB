@@ -37,6 +37,7 @@ public class OknoStatystyki
     	frame = new JFrame("Statystyki");
     	this.okno = okno;
 		frame.setSize(500, 300);
+		frame.setLocationRelativeTo(null);
 		panel = new JPanel();
 		frame.setContentPane(panel);
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -60,7 +61,13 @@ public class OknoStatystyki
         poleQuiz.setEditable(false);
         wynikFiszki.setEditable(false);
         wynikQuiz.setEditable(false);
-            
+        
+        panel.setBackground(Kolory.Tlo);
+        panelGora.setBackground(Kolory.Tlo);
+        panelDol.setBackground(Kolory.Tlo);
+        panelFiszki.setBackground(Kolory.Tlo);
+        panelQuiz.setBackground(Kolory.Tlo);
+        
         panel.add(panelGora);
     	panel.add(panelDol);
     	panelGora.add(label1, BorderLayout.WEST);
@@ -100,8 +107,8 @@ public class OknoStatystyki
 		if(!Statystyki.RozegraneFiszki.isEmpty())
 		{
 			for(int i=1; i <= Statystyki.WynikFiszek.size(); i++)
-				poleFiszki.append("Partia fiszek nr " + i + ": " + Statystyki.WynikFiszek.get(i-1) + "/" + Statystyki.RozegraneFiszki.get(i-1) + "\n");
-			wynikFiszki.setText("Wszystkie zdobyte punkty: " + Statystyki.CalkowityWynik(Statystyki.WynikFiszek) + "/" + Statystyki.CalkowityWynik(Statystyki.RozegraneFiszki));	
+				poleFiszki.append("Partia fiszek nr " + i + ": " + Statystyki.WynikFiszek.get(i-1) + "/" + Statystyki.RozegraneFiszki.get(i-1) + " pkt.\n");
+			wynikFiszki.setText("Wszystkie zdobyte punkty: " + Statystyki.CalkowityWynik(Statystyki.WynikFiszek) + "/" + Statystyki.CalkowityWynik(Statystyki.RozegraneFiszki) + " pkt.");	
 		}
 	}
 	private void aktualizujQuiz()
@@ -109,8 +116,8 @@ public class OknoStatystyki
 		if(!Statystyki.RozegraneFiszki.isEmpty())
 		{
 			for(int i=1; i <= Statystyki.WynikQuizu.size(); i++)
-				poleQuiz.append("Partia quizu nr " + i + ": " + Statystyki.WynikQuizu.get(i-1) + "/" + Statystyki.RozegraneQuizy.get(i-1) + "\n");
-			wynikQuiz.setText("Wszystkie zdobyte punkty: " + Statystyki.CalkowityWynik(Statystyki.WynikQuizu) + "/" + Statystyki.CalkowityWynik(Statystyki.RozegraneQuizy));	
+				poleQuiz.append("Partia quizu nr " + i + ": " + Statystyki.WynikQuizu.get(i-1) + "/" + Statystyki.RozegraneQuizy.get(i-1) + " pkt.\n");
+			wynikQuiz.setText("Wszystkie zdobyte punkty: " + Statystyki.CalkowityWynik(Statystyki.WynikQuizu) + "/" + Statystyki.CalkowityWynik(Statystyki.RozegraneQuizy) + " pkt.");	
 		}
 	}
 }
