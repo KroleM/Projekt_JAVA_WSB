@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 
 import program.OknoFiszki;
 import program.ParaSlow;
+import program.Statystyki;
 
 /**
  * W¹tek zaczyna pokazywaæ s³owa po polsku lub angielsku (w zale¿noœci od wybranego trybu) i nale¿y dopasowaæ do nich t³umaczenie.
@@ -36,6 +37,8 @@ public class FiszkiThread extends Thread
 		JTextField pole1 = new JTextField();
 		JTextField pole2 = new JTextField();
 		boolean jezyk;
+		int wynik = 0;
+		int liczbaFiszek = 0;
 		
 		if(getOknoFiszki().getPolski().isSelected())
 		{
@@ -59,12 +62,15 @@ public class FiszkiThread extends Thread
 				Thread.sleep(5000);		
 				if(pole2.getText().equals(getOknoFiszki().getPolski().isSelected() ? elem.getSlowoAngielskie() : elem.getSlowoPolskie()))
 				{
+					wynik++;
+					liczbaFiszek++;
 					dobraOdpowiedz(pole2);
 					Thread.sleep(1000);
 					wyzerujPole(pole2);
 				}
 				else
 				{
+					liczbaFiszek++;
 					zlaOdpowiedz(pole2, elem, jezyk);
 					Thread.sleep(1000);
 					wyzerujPole(pole2);
@@ -82,6 +88,8 @@ public class FiszkiThread extends Thread
 				if(getOknoFiszki().isCzyStart() == false) break;
 			}
 		}
+		Statystyki.WynikFiszek.add(wynik);
+		Statystyki.RozegraneFiszki.add(liczbaFiszek);
 		if(getOknoFiszki().isCzyStart() == true) JOptionPane.showMessageDialog(null, "Cykl fiszek zakoñczony!");
 		aktywujPrzyciski();
 	}

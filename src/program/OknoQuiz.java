@@ -2,7 +2,6 @@ package program;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -134,10 +133,17 @@ public class OknoQuiz
 		buttonC.addActionListener(buttonListener);
 		buttonD.addActionListener(buttonListener);
 		
-		/**
-		 * Key Binding dla klawiszy klawiatury a, b, c, d;
-		 * Przyciœniêcie klawisza wywo³uje akcjê ButtonAction(JButton)
-		 */
+		obslugaKlawiatury();
+		
+		zamknijOkno();
+    }
+	
+	/**
+	 * Key Binding dla klawiszy klawiatury a, b, c, d;
+	 * Przyciœniêcie klawisza wywo³uje akcjê ButtonAction(JButton)
+	 */
+	private void obslugaKlawiatury()
+	{
 		tekstPytania.getInputMap(IFW).put(KeyStroke.getKeyStroke("A"), odpA);
 		tekstPytania.getInputMap(IFW).put(KeyStroke.getKeyStroke("B"), odpB);
 		tekstPytania.getInputMap(IFW).put(KeyStroke.getKeyStroke("C"), odpC);
@@ -147,11 +153,14 @@ public class OknoQuiz
 		tekstPytania.getActionMap().put(odpB, new ButtonAction(buttonB));
 		tekstPytania.getActionMap().put(odpC, new ButtonAction(buttonC));
 		tekstPytania.getActionMap().put(odpD, new ButtonAction(buttonD));
-		
-		/**
-		 * Zamykanie okna "QUIZ"
-		 *  Ta metoda zamyka okno Quiz, wysy³a sygna³ do w¹tku o zakoñczeniu i aktywuje z powrotem okno g³ówne
-		 */
+	}
+	
+	/**
+	 * Zamykanie okna "QUIZ"
+	 *  Ta metoda zamyka okno Quiz, wysy³a sygna³ do w¹tku o zakoñczeniu i aktywuje z powrotem okno g³ówne
+	 */
+	private void zamknijOkno()
+	{
 		frame.addWindowListener (new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				setCzyStart(false);
@@ -162,6 +171,6 @@ public class OknoQuiz
 			}
 		});
 		frame.setVisible(true);
-    }
+	}
 
 }

@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import program.OknoQuiz;
 import program.PytaniaQuiz;
 import program.PytanieQuiz;
+import program.Statystyki;
 
 public class QuizThread extends Thread
 {
@@ -36,6 +37,8 @@ public class QuizThread extends Thread
 		JTextField poleB = new JTextField();
 		JTextField poleC = new JTextField();
 		JTextField poleD = new JTextField();
+		int wynik = 0;
+		int liczbaPytan = 0;
 		
 		pytanie = getOknoQuiz().getTekstPytania();
 		poleA = getOknoQuiz().getTekstOdpA();
@@ -67,11 +70,14 @@ public class QuizThread extends Thread
 				
 				if(getOknoQuiz().getWybranaOdp() == prawidlowaOdp)
 				{
+					wynik++;
+					liczbaPytan++;
 					dobraOdpowiedz(prawidlowaOdp);
 					Thread.sleep(1000);
 				}
 				else
 				{
+					liczbaPytan++;
 					zlaOdpowiedz(prawidlowaOdp);
 					Thread.sleep(1000);
 				}
@@ -88,6 +94,8 @@ public class QuizThread extends Thread
 				if(getOknoQuiz().isCzyStart() == false) break;
 			}
 		}
+		Statystyki.WynikQuizu.add(wynik);
+		Statystyki.RozegraneQuizy.add(liczbaPytan);
 		if(getOknoQuiz().isCzyStart() == true) JOptionPane.showMessageDialog(null, "Quiz zakoñczony!");
 		getOknoQuiz().getTekstPytania().setText("Tutaj pojawi siê treœæ pytania.");
 		getOknoQuiz().getStartQuiz().setText("START");
